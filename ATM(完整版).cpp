@@ -19,14 +19,14 @@ const char* show_realtime(time_t t)
 }
 
 
-void color(int x)														// 0=ºÚÉ«     8=»ÒÉ«¡¡
-{																		// 1=À¶É«     9=µ­À¶É«
-	if (x >= 0 && x <= 15)												// 2=ÂÌÉ«     10=µ­ÂÌÉ«  
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), x);	// 3=ºşÀ¶É«	  11=µ­Ç³ÂÌÉ« 
-	else																// 4=ºìÉ«     12=µ­ºìÉ«
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);	// 5=×ÏÉ«     13=µ­×ÏÉ« 
-}																		// 6=»ÆÉ«     14=µ­»ÆÉ« 
-																		// 7=°×É«     15=ÁÁ°×É«
+void color(int x)								// 0=é»‘è‰²     8=ç°è‰²ã€€
+{										// 1=è“è‰²     9=æ·¡è“è‰²
+	if (x >= 0 && x <= 15)							// 2=ç»¿è‰²     10=æ·¡ç»¿è‰²  
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), x);	// 3=æ¹–è“è‰²   11=æ·¡æµ…ç»¿è‰² 
+	else									// 4=çº¢è‰²     12=æ·¡çº¢è‰²
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);	// 5=ç´«è‰²     13=æ·¡ç´«è‰² 
+}										// 6=é»„è‰²     14=æ·¡é»„è‰² 
+										// 7=ç™½è‰²     15=äº®ç™½è‰²
 
 int Y;
 int language()
@@ -46,11 +46,11 @@ int language()
 }
 struct Account
 {
-	char name[100];//ĞÕÃû
-	char username[21]={'\0'};//ÕË»§
-	char password[100];//ÃÜÂë
-	char idCard[100];//Éí·İÖ¤
-	char phone[100];//µç»°ºÅÂë
+	char name[100];//å§“å
+	char username[21]={'\0'};//è´¦æˆ·
+	char password[100];//å¯†ç 
+	char idCard[100];//èº«ä»½è¯
+	char phone[100];//ç”µè¯å·ç 
 	float money;
 
 	struct Account *next;
@@ -117,7 +117,7 @@ void getpasswd(Account* pa)
 	}
 		if (Y)
 		{
-			printf(".......ÊäÈë³É¹¦£¬»Ø³µ¼ÌĞø\n");
+			printf(".......è¾“å…¥æˆåŠŸï¼Œå›è½¦ç»§ç»­\n");
 		}
 		else
 		{
@@ -127,7 +127,7 @@ void getpasswd(Account* pa)
 	return;
 }
 
-void addNode(Account *node)//AccountÁ´±íµÄÁ¬½Ó
+void addNode(Account *node)//Accounté“¾è¡¨çš„è¿æ¥
 {
 	node->next = NULL;
 	if (head == NULL)
@@ -142,13 +142,13 @@ void addNode(Account *node)//AccountÁ´±íµÄÁ¬½Ó
 	}
 }
 
-struct TransactionRecord   //½»Ò×¼ÇÂ¼
+struct TransactionRecord   //äº¤æ˜“è®°å½•
 {
 	char username[100];
-	char timestamp[50];//Ê±¼ä
-	char type[20];//½»Ò×ÀàĞÍ
-	float amount;//Êı¶î 
-	float money;//µ±Ç°Óà¶î
+	char timestamp[50];//æ—¶é—´
+	char type[20];//äº¤æ˜“ç±»å‹
+	float amount;//æ•°é¢ 
+	float money;//å½“å‰ä½™é¢
 
 	struct TransactionRecord * next;
 };
@@ -157,7 +157,7 @@ typedef struct TransactionRecord TR;
 TR * trHead = NULL;
 TR * trTail = NULL;
 
-void addNodeTR(TR *oNode)//TRÁ´±íµÄÁ¬½Ó
+void addNodeTR(TR *oNode)//TRé“¾è¡¨çš„è¿æ¥
 {
 	oNode->next = NULL;
 	if (trHead == NULL)
@@ -182,9 +182,9 @@ int init()
 		return 0;
 	}
 	else {
-				while (!feof(fp))//½«ÎÄ¼şÀïµÄÊı¾İĞ´µ½½á¹¹ÌåÊı×éÖĞ
+				while (!feof(fp))//å°†æ–‡ä»¶é‡Œçš„æ•°æ®å†™åˆ°ç»“æ„ä½“æ•°ç»„ä¸­
 				{
-					//ÉêÇëÒ»¿éÄÚ´æ¿Õ¼ä£¬È»ºó°ÑµØÖ·¸³Öµ¸øÖ¸ÕënewNodeP 
+					//ç”³è¯·ä¸€å—å†…å­˜ç©ºé—´ï¼Œç„¶åæŠŠåœ°å€èµ‹å€¼ç»™æŒ‡é’ˆnewNodeP 
 					Account * newNodeP = (Account *)malloc(sizeof(Account));
 					fscanf(fp, "%s %s %s %s %s %f\n", newNodeP->name, newNodeP->username, newNodeP->password, newNodeP->idCard, newNodeP->phone, &newNodeP->money);
 
@@ -204,7 +204,7 @@ int init()
 }
 
 
-void printLinkedList()//Êä³öÁ´±íÀïµÄÊı¾İ
+void printLinkedList()//è¾“å‡ºé“¾è¡¨é‡Œçš„æ•°æ®
 {
 	Account *curP = head;
 	TR* curP1 = trHead;
@@ -212,7 +212,7 @@ void printLinkedList()//Êä³öÁ´±íÀïµÄÊı¾İ
 	{
 			if (Y)
 			{
-			printf("ĞÕÃû:%-15sÕËºÅ:%-22sÃÜÂë:%-8sÉí·İÖ¤:%-25sµç»°:%-12sÓà¶î:%f\n"
+			printf("å§“å:%-15sè´¦å·:%-22så¯†ç :%-8sèº«ä»½è¯:%-25sç”µè¯:%-12sä½™é¢:%f\n"
 			, curP->name, curP->username, curP->password, curP->idCard, curP->phone, curP->money);
 			}
 			else
@@ -229,18 +229,18 @@ void printLinkedList()//Êä³öÁ´±íÀïµÄÊı¾İ
 	{
 		if (Y)
 		{
-			printf("ÕËºÅ£º%s\tÊ±¼ä£º%s\t½»Ò×ÀàĞÍ£º%s\t½»Ò×½ğ¶î£º%f\tÊ£Óà½ğ¶î£º%f\n", curP1->username, curP1->timestamp, curP1->type, curP1->amount,curP1->money);
+			printf("è´¦å·ï¼š%s\tæ—¶é—´ï¼š%s\täº¤æ˜“ç±»å‹ï¼š%s\täº¤æ˜“é‡‘é¢ï¼š%f\tå‰©ä½™é‡‘é¢ï¼š%f\n", curP1->username, curP1->timestamp, curP1->type, curP1->amount,curP1->money);
 		}
 		else
 		{
-			printf("ID£º%s\t time£º%s\t trade type£º%s\t transaction amount£º%f\t balance£º%f\n", curP1->username, curP1->timestamp, curP1->type, curP1->amount,curP1->money);
+			printf("IDï¼š%s\t timeï¼š%s\t trade typeï¼š%s\t transaction amountï¼š%f\t balanceï¼š%f\n", curP1->username, curP1->timestamp, curP1->type, curP1->amount,curP1->money);
 		}
 
 		curP1 = curP1->next;
 	}
 }
 
-void exitFunction()//½«Á´±íÀïµÄÊı¾İĞ´µ½atm.txtÎÄ¼şÖĞ
+void exitFunction()//å°†é“¾è¡¨é‡Œçš„æ•°æ®å†™åˆ°atm.txtæ–‡ä»¶ä¸­
 {
 	FILE* fp = fopen("D:\\VS2015\\atm.txt", "w");
 	Account * curP = head;
@@ -252,7 +252,7 @@ void exitFunction()//½«Á´±íÀïµÄÊı¾İĞ´µ½atm.txtÎÄ¼şÖĞ
 	fclose(fp);
 }
 
-void saveTransactionRecord()//½»Ò×¼ÇÂ¼´æ´¢µ½ÎÄ¼ştransation_record.txtÖĞ
+void saveTransactionRecord()//äº¤æ˜“è®°å½•å­˜å‚¨åˆ°æ–‡ä»¶transation_record.txtä¸­
 {
 	FILE* fP = fopen("D:\\VS2015\\transation_record.txt", "w");
 	TR* curP = trHead;
@@ -266,18 +266,18 @@ void saveTransactionRecord()//½»Ò×¼ÇÂ¼´æ´¢µ½ÎÄ¼ştransation_record.txtÖĞ
 
 
 
-void signUp()//¿ª»§
+void signUp()//å¼€æˆ·
 {
 	
 	srand(time(0));
 	Account * newNodeP = (Account *)malloc(sizeof(Account));
 		if (Y)
 		{
-			printf("ÇëÊäÈëĞÕÃû:");
+			printf("è¯·è¾“å…¥å§“å:");
 			scanf("%s", newNodeP->name);
 
 			iCard(newNodeP);
-			printf("ÄãµÄÒøĞĞ¿¨ºÅÊÇ£º%s\n", newNodeP->username);
+			printf("ä½ çš„é“¶è¡Œå¡å·æ˜¯ï¼š%s\n", newNodeP->username);
 			while (1)
 			{
 				char pass1[7] = { '\0' };
@@ -286,13 +286,13 @@ void signUp()//¿ª»§
 				{
 					if (i == 0)
 					{
-						printf("-----ÃÜÂëÖÁÉÙ6Î»ÇÒ²»°üº¬¿Õ¸ñ-----\nÇëÊäÈëÃÜÂë:");
+						printf("-----å¯†ç è‡³å°‘6ä½ä¸”ä¸åŒ…å«ç©ºæ ¼-----\nè¯·è¾“å…¥å¯†ç :");
 						getpasswd(newNodeP);
 						strcat(pass1, newNodeP->password);
 					}
 					else
 					{
-						printf("ÇëÔÚÊäÈëÃÜÂë:");
+						printf("è¯·åœ¨è¾“å…¥å¯†ç :");
 						getpasswd(newNodeP);
 						strcat(pass2, newNodeP->password);
 					}
@@ -301,24 +301,24 @@ void signUp()//¿ª»§
 				if (strcmp(pass1, pass2) == 0)
 				{
 					color(14);
-					printf("ÃÜÂë´´½¨³É¹¦£¡\n");
+					printf("å¯†ç åˆ›å»ºæˆåŠŸï¼\n");
 					color(7);
 					break;
 				}
 				else
 				{
 					color(12);
-					printf("ÃÜÂë´´½¨Ê§°Ü£¬ÇëÖØĞÂÊäÈë£¡\n");
+					printf("å¯†ç åˆ›å»ºå¤±è´¥ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
 					color(7);
 				}
 			}
 			
 
 
-			printf("ÇëÊäÈëÉí·İÖ¤ºÅÂë:");
+			printf("è¯·è¾“å…¥èº«ä»½è¯å·ç :");
 			scanf("%s", newNodeP->idCard);
 
-			printf("ÇëÊäÈëµç»°ºÅÂë:");
+			printf("è¯·è¾“å…¥ç”µè¯å·ç :");
 			scanf("%s", newNodeP->phone);
 			getchar();
 
@@ -326,7 +326,7 @@ void signUp()//¿ª»§
 
 			addNode(newNodeP);
 			color(14);
-			printf("´´½¨³É¹¦£¡\n");
+			printf("åˆ›å»ºæˆåŠŸï¼\n");
 			color(7);
 		}
 		else
@@ -335,7 +335,7 @@ void signUp()//¿ª»§
 			scanf("%s", newNodeP->name);
 
 			iCard(newNodeP);
-			printf("Your bank card number is£º%s\n", newNodeP->username);
+			printf("Your bank card number isï¼š%s\n", newNodeP->username);
 
 			while (1)
 			{
@@ -360,14 +360,14 @@ void signUp()//¿ª»§
 				if (strcmp(pass1, pass2) == 0)
 				{
 					color(14);
-					printf("Password created successfully£¡\n");
+					printf("Password created successfullyï¼\n");
 					color(7);
 					break;
 				}
 				else
 				{
 					color(12);
-					printf("Failed to create the password, Please enter a new password£¡\n");
+					printf("Failed to create the password, Please enter a new passwordï¼\n");
 					color(7);
 				}
 			}
@@ -383,13 +383,13 @@ void signUp()//¿ª»§
 
 			addNode(newNodeP);
 
-			printf("for user admin£¡\n");
+			printf("for user adminï¼\n");
 		}
 	
 	system("pause");
 	system("cls");
 }
-Account * curAccount = NULL;//Ö¸Ïòµ±Ç°µÇÂ¼ÕË»§µÄÖ¸Õë 
+Account * curAccount = NULL;//æŒ‡å‘å½“å‰ç™»å½•è´¦æˆ·çš„æŒ‡é’ˆ 
 int findAccount(Account a)
 {
 	Account *curP = head;
@@ -405,28 +405,28 @@ int findAccount(Account a)
 	return 0;
 }
 
-void updatePassword()//ÃÜÂëĞŞ¸Äº¯Êı
+void updatePassword()//å¯†ç ä¿®æ”¹å‡½æ•°
 {
 		if (Y)
 		{
-			printf("ÇëÊäÈë¾ÉÃÜÂë:\n");
+			printf("è¯·è¾“å…¥æ—§å¯†ç :\n");
 			char oldPassword[100] = { '\0' };
 			scanf("%s", oldPassword);
 			if (strcmp(oldPassword, curAccount->password) == 0)
 			{
-				//ÈÃÆäĞŞ¸Ä 
-				printf("ÇëÊäÈëĞÂÃÜÂë£º\n");
+				//è®©å…¶ä¿®æ”¹ 
+				printf("è¯·è¾“å…¥æ–°å¯†ç ï¼š\n");
 				scanf("%s", curAccount->password);
 				color(14);
 				printf("----------------\n");
-				printf("|--ĞŞ¸Ä³É¹¦£¡--|\n");
+				printf("|--ä¿®æ”¹æˆåŠŸï¼--|\n");
 				printf("----------------\n");
 			}
 			else
 			{
 				color(12);
 				printf("--------------------------------\n");
-				printf("|--¾ÉÃÜÂëÊäÈë´íÎó£¬¾Ü¾øĞŞ¸Ä£¡--|\n");
+				printf("|--æ—§å¯†ç è¾“å…¥é”™è¯¯ï¼Œæ‹’ç»ä¿®æ”¹ï¼--|\n");
 				printf("--------------------------------\n");
 			}
 			color(7);
@@ -438,14 +438,14 @@ void updatePassword()//ÃÜÂëĞŞ¸Äº¯Êı
 			scanf("%s", oldPassword);
 			if (strcmp(oldPassword, curAccount->password) == 0)
 			{
-				//ÈÃÆäĞŞ¸Ä 
-				printf("please enter new password£º\n");
+				//è®©å…¶ä¿®æ”¹ 
+				printf("please enter new passwordï¼š\n");
 				scanf("%s", curAccount->password);
-				printf("modify successfully£¡\n");
+				printf("modify successfullyï¼\n");
 			}
 			else
 			{
-				printf("The old password is incorrect and cannot be changed£¡\n");
+				printf("The old password is incorrect and cannot be changedï¼\n");
 			}
 		}
 	
@@ -459,55 +459,55 @@ void homePage()
 
 
 
-void saveMoney()//´æ¿îº¯Êı
+void saveMoney()//å­˜æ¬¾å‡½æ•°
 {
 		float money;
 		if (Y)
 		{
-			printf("ÇëÊäÈë´æÇ®½ğ¶î£º");
+			printf("è¯·è¾“å…¥å­˜é’±é‡‘é¢ï¼š");
 			scanf("%f", &money);
 			getchar();
 			curAccount->money += money;
 			printf("----------------\n");
-			printf("|--´æ¿î³É¹¦£¡--|\n");
+			printf("|--å­˜æ¬¾æˆåŠŸï¼--|\n");
 			printf("----------------\n");
 		}
 		else
 		{
-			printf("Please enter the deposit amount£º");
+			printf("Please enter the deposit amountï¼š");
 			
 			scanf("%f", &money);
 			getchar();
 			curAccount->money += money;
-			printf("Deposit successfully£¡\n");
+			printf("Deposit successfullyï¼\n");
 		}
 	
 
-		exitFunction();//±£´æÊı¾İ£¨Account£©
+		exitFunction();//ä¿å­˜æ•°æ®ï¼ˆAccountï¼‰
 
 		TR *newNode = (TR *)malloc(sizeof(TR));
 
-		char t[20] = { "´æ¿î/ÊÕÈë" };
+		char t[20] = { "å­˜æ¬¾/æ”¶å…¥" };
 
 		strcpy(newNode->username, curAccount->username);
-		strcpy(newNode->type, t);        //¼ÇÂ¼½»Ò×ÀàĞÍ
-		newNode->amount = money;         //¼ÇÂ¼½»Ò×½ğ¶î
+		strcpy(newNode->type, t);        //è®°å½•äº¤æ˜“ç±»å‹
+		newNode->amount = money;         //è®°å½•äº¤æ˜“é‡‘é¢
 
 		time_t the_time=0;
 		strcpy(newNode->timestamp, show_realtime(the_time));
-		//newNode->timestamp = time(NULL); //¼ÇÂ¼µ±Ç°Ê±¼ä´Á
-		newNode->money=curAccount->money;//±£´æµ±Ç°Óà¶î
+		//newNode->timestamp = time(NULL); //è®°å½•å½“å‰æ—¶é—´æˆ³
+		newNode->money=curAccount->money;//ä¿å­˜å½“å‰ä½™é¢
 
-		addNodeTR(newNode);     //Á´±íÁ¬½Ó£¨TR£©
-		saveTransactionRecord();//±£´æÊı¾İ£¨TR£©
+		addNodeTR(newNode);     //é“¾è¡¨è¿æ¥ï¼ˆTRï¼‰
+		saveTransactionRecord();//ä¿å­˜æ•°æ®ï¼ˆTRï¼‰
 	
 }
 
-void drawMoney()//È¡¿îº¯Êı
+void drawMoney()//å–æ¬¾å‡½æ•°
 {
 	if (Y)
 	{
-		printf("ÇëÊäÈëÈ¡¿î½ğ¶î:");
+		printf("è¯·è¾“å…¥å–æ¬¾é‡‘é¢:");
 	}
 	else
 	{
@@ -524,14 +524,14 @@ void drawMoney()//È¡¿îº¯Êı
 		if (Y)
 		{
 			printf("----------------\n");
-			printf("|--½ğ¶î²»×ã£¡--|\n");
+			printf("|--é‡‘é¢ä¸è¶³ï¼--|\n");
 			printf("----------------\n");
 
 		}
 		else
 		{
 			printf("-------------------------\n");
-			printf("|--insufficient fund£¡--|");
+			printf("|--insufficient fundï¼--|");
 			printf("-------------------------\n");
 		}
 		color(7);
@@ -542,28 +542,28 @@ void drawMoney()//È¡¿îº¯Êı
 		curAccount->money = curAccount->money - money;
 		if (Y)
 		{
-			printf("---È¡¿î³É¹¦£¡---\n");
+			printf("---å–æ¬¾æˆåŠŸï¼---\n");
 		}
 		else
 		{
-			printf("---Withdrawals success£¡---\n");
+			printf("---Withdrawals successï¼---\n");
 		}
 
-		exitFunction();   //±£´æÊı¾İ£¨Account£©
+		exitFunction();   //ä¿å­˜æ•°æ®ï¼ˆAccountï¼‰
 
 		TR *newNode = (TR *)malloc(sizeof(TR));
-		char t[20] = { "È¡¿î/Ö§³ö" };
+		char t[20] = { "å–æ¬¾/æ”¯å‡º" };
 		strcpy(newNode->username, curAccount->username);
-		strcpy(newNode->type, t);          //¼ÇÂ¼½»Ò×ÀàĞÍ
-		newNode->amount = money;           //¼ÇÂ¼½»Ò×½ğ¶î
+		strcpy(newNode->type, t);          //è®°å½•äº¤æ˜“ç±»å‹
+		newNode->amount = money;           //è®°å½•äº¤æ˜“é‡‘é¢
 
 		time_t the_time=0;
 		strcpy(newNode->timestamp,show_realtime(the_time));
-		//newNode->timestamp = time(NULL);   //¼ÇÂ¼µ±Ç°Ê±¼ä´Á
-		newNode->money=curAccount->money;  //±£´æµ±Ç°Óà¶î
+		//newNode->timestamp = time(NULL);   //è®°å½•å½“å‰æ—¶é—´æˆ³
+		newNode->money=curAccount->money;  //ä¿å­˜å½“å‰ä½™é¢
 
-		addNodeTR(newNode);     //Á´±íÁ¬½Ó£¨TR£©
-		saveTransactionRecord();//±£´æÊı¾İ£¨TR£©
+		addNodeTR(newNode);     //é“¾è¡¨è¿æ¥ï¼ˆTRï¼‰
+		saveTransactionRecord();//ä¿å­˜æ•°æ®ï¼ˆTRï¼‰
 		return;
 		
 	}
@@ -589,11 +589,11 @@ void transfer()
 	color(7);
 	if (Y)
 	{
-		printf("ÇëÊäÈë¶Ô·½ÕË»§£º");
+		printf("è¯·è¾“å…¥å¯¹æ–¹è´¦æˆ·ï¼š");
 	}
 	else
 	{
-		printf("Please enter your account£º");
+		printf("Please enter your accountï¼š");
 	}
 	char otherUsername[100];
 	scanf("%s", otherUsername);
@@ -604,13 +604,13 @@ void transfer()
 		if (Y)
 		{
 			printf("------------------\n");
-			printf("|--ÕË»§²»´æÔÚ£¡--|\n");
+			printf("|--è´¦æˆ·ä¸å­˜åœ¨ï¼--|\n");
 			printf("------------------\n");
 		}
 		else
 		{
 			printf("------------------------------\n");
-			printf("|--Account does not exist£¡--|\n");
+			printf("|--Account does not existï¼--|\n");
 			printf("------------------------------\n");
 		}
 		color(7);
@@ -622,11 +622,11 @@ void transfer()
 			color(7);
 			if (Y)
 			{
-				printf("ÇëÊäÈë×ªÕË½ğ¶î£º");
+				printf("è¯·è¾“å…¥è½¬è´¦é‡‘é¢ï¼š");
 			}
 			else
 			{
-				printf("Please enter the transfer amount£º");
+				printf("Please enter the transfer amountï¼š");
 			}
 			
 			int money;
@@ -639,13 +639,13 @@ void transfer()
 				if (Y)
 				{
 					printf("-------------------------\n");
-					printf("|--µ±Ç°ÕË»§Óà¶î²»×ã!!!--|\n");
+					printf("|--å½“å‰è´¦æˆ·ä½™é¢ä¸è¶³!!!--|\n");
 					printf("-------------------------\n");
 				}
 				else
 				{
 					printf("---------------------------------------------------\n");
-					printf("///The current account balance is insufficient£¡///\n");
+					printf("///The current account balance is insufficientï¼///\n");
 					printf("---------------------------------------------------\n");
 				}
 				color(7);
@@ -653,52 +653,52 @@ void transfer()
 			else
 			{
 		
-				//µ±Ç°ÕË»§Óà¶î±ä»¯£º¼õÉÙ 
+				//å½“å‰è´¦æˆ·ä½™é¢å˜åŒ–ï¼šå‡å°‘ 
 				curAccount->money = curAccount->money - money;
-				//¶Ô·½ÕË»§Óà¶î±ä»¯£ºÔö¼Ó
+				//å¯¹æ–¹è´¦æˆ·ä½™é¢å˜åŒ–ï¼šå¢åŠ 
 				otherAccont->money = otherAccont->money + money;
 
 				color(14);
 				if (Y)
 				{
-					printf("×ªÕË³É¹¦£¡\n");
+					printf("è½¬è´¦æˆåŠŸï¼\n");
 				}
 				else
 				{
-					printf("Transfer success£¡\n");
+					printf("Transfer successï¼\n");
 				}
 				color(7);
 
-				exitFunction();//±£´æÊı¾İ£¨Account£©
+				exitFunction();//ä¿å­˜æ•°æ®ï¼ˆAccountï¼‰
 
 				TR *newNode = (TR *)malloc(sizeof(TR));
 
-				char t[20] = { "×ªÕË/×ªÈë" };
+				char t[20] = { "è½¬è´¦/è½¬å…¥" };
 
 				strcpy(newNode->username, curAccount->username);
-				strcpy(newNode->type, t);        //¼ÇÂ¼½»Ò×ÀàĞÍ
-				newNode->amount = money;         //¼ÇÂ¼½»Ò×½ğ¶î
+				strcpy(newNode->type, t);        //è®°å½•äº¤æ˜“ç±»å‹
+				newNode->amount = money;         //è®°å½•äº¤æ˜“é‡‘é¢
 
 				time_t the_time=0;
 				strcpy(newNode->timestamp,show_realtime(the_time));
-				//newNode->timestamp = time(NULL); //¼ÇÂ¼µ±Ç°Ê±¼ä´Á
-				newNode->money = curAccount->money;//±£´æµ±Ç°Óà¶î
+				//newNode->timestamp = time(NULL); //è®°å½•å½“å‰æ—¶é—´æˆ³
+				newNode->money = curAccount->money;//ä¿å­˜å½“å‰ä½™é¢
 
-				addNodeTR(newNode);     //Á´±íÁ¬½Ó£¨TR£©
+				addNodeTR(newNode);     //é“¾è¡¨è¿æ¥ï¼ˆTRï¼‰
 
 				TR *newNode1 = (TR *)malloc(sizeof(TR));
-				char other[20] = { "×ªÕË/×ª³ö" };
+				char other[20] = { "è½¬è´¦/è½¬å‡º" };
 
 				strcpy(newNode1->username, otherAccont->username);
-				strcpy(newNode1->type, other);        //¼ÇÂ¼½»Ò×ÀàĞÍ
-				newNode1->amount = money;             //¼ÇÂ¼½»Ò×½ğ¶î
+				strcpy(newNode1->type, other);        //è®°å½•äº¤æ˜“ç±»å‹
+				newNode1->amount = money;             //è®°å½•äº¤æ˜“é‡‘é¢
 
 				strcpy(newNode1->timestamp, show_realtime(the_time));
-				//newNode1->timestamp = time(NULL);     //¼ÇÂ¼µ±Ç°Ê±¼ä´Á
-				newNode1->money = otherAccont->money; //±£´æµ±Ç°Óà¶î
+				//newNode1->timestamp = time(NULL);     //è®°å½•å½“å‰æ—¶é—´æˆ³
+				newNode1->money = otherAccont->money; //ä¿å­˜å½“å‰ä½™é¢
 
-				addNodeTR(newNode1);     //Á´±íÁ¬½Ó£¨TR£©
-				saveTransactionRecord();//±£´æÊı¾İ£¨TR£©
+				addNodeTR(newNode1);     //é“¾è¡¨è¿æ¥ï¼ˆTRï¼‰
+				saveTransactionRecord();//ä¿å­˜æ•°æ®ï¼ˆTRï¼‰
 				break;
 			}
 		}
@@ -708,7 +708,7 @@ void transfer()
 
 }
 
-void signIn() //µÇÂ¼º¯Êı
+void signIn() //ç™»å½•å‡½æ•°
 {
 	for (int i = 0; i<3;i++)
 	{
@@ -717,25 +717,25 @@ void signIn() //µÇÂ¼º¯Êı
 		if (Y)
 		{
 			printf("----------------------\n");
-			printf("|------»¶Ó­µÇÂ¼------|\n");
+			printf("|------æ¬¢è¿ç™»å½•------|\n");
 			printf("----------------------\n");
 			
-			printf("ÇëÊäÈëÕËºÅ£º");
+			printf("è¯·è¾“å…¥è´¦å·ï¼š");
 			scanf("%s", a.username);
 			getchar();
 
-			printf("ÇëÊäÈëÃÜÂë£º");
+			printf("è¯·è¾“å…¥å¯†ç ï¼š");
 		}
 		else
 		{
 			printf("-----------------------\n");
 			printf("|--Welcome to Log on--|\n");
 			printf("-----------------------\n");
-			printf("Please enter mail account username£º");
+			printf("Please enter mail account usernameï¼š");
 			scanf("%s", a.username);
 			getchar();
 
-			printf("enter your PIN£º");
+			printf("enter your PINï¼š");
 		}
 		
 		getpasswd(&a);
@@ -748,35 +748,35 @@ void signIn() //µÇÂ¼º¯Êı
 				if (Y)
 				{
 					color(14);
-					printf("////µÇÂ¼³É¹¦£¡////\n");
+					printf("////ç™»å½•æˆåŠŸï¼////\n");
 					color(3);
 					printf("-------------------\n");
-					printf("|--¡¾1¡¿ĞŞ¸ÄÃÜÂë--|\n");
+					printf("|--ã€1ã€‘ä¿®æ”¹å¯†ç --|\n");
 					printf("-------------------\n");
-					printf("|--¡¾2¡¿ĞèÒªÈ¡¿î--|\n");
+					printf("|--ã€2ã€‘éœ€è¦å–æ¬¾--|\n");
 					printf("-------------------\n");
-					printf("|--¡¾3¡¿ĞèÒª´æ¿î--|\n");
+					printf("|--ã€3ã€‘éœ€è¦å­˜æ¬¾--|\n");
 					printf("-------------------\n");
-					printf("|--¡¾4¡¿ĞèÒª×ªÕË--|\n");
+					printf("|--ã€4ã€‘éœ€è¦è½¬è´¦--|\n");
 					printf("-------------------\n");
-					printf("|--¡¾5¡¿ÍË³öµÇÂ¼--|\n");
+					printf("|--ã€5ã€‘é€€å‡ºç™»å½•--|\n");
 					printf("-------------------\n");
 				}
 				else
 				{
 					color(14);
-					printf("-------login successfully£¡------\n"); 
+					printf("-------login successfullyï¼------\n"); 
 					color(3);
 					printf("---------------------------------\n");
-					printf("|--¡¾1¡¿change password---------|\n");
+					printf("|--ã€1ã€‘change password---------|\n");
 					printf("---------------------------------\n");
-					printf("|--¡¾2¡¿Need to withdraw money--|\n");
+					printf("|--ã€2ã€‘Need to withdraw money--|\n");
 					printf("---------------------------------\n");
-					printf("|--¡¾3¡¿liquid funds------------|\n");
+					printf("|--ã€3ã€‘liquid funds------------|\n");
 					printf("---------------------------------\n");
-					printf("|--¡¾4¡¿Need to transfer--------|\n");
+					printf("|--ã€4ã€‘Need to transfer--------|\n");
 					printf("---------------------------------\n");
-					printf("|--¡¾5¡¿Logout------------------|\n");
+					printf("|--ã€5ã€‘Logout------------------|\n");
 					printf("---------------------------------\n");
 				}
 				
@@ -785,19 +785,19 @@ void signIn() //µÇÂ¼º¯Êı
 				getchar();
 				if (iIint == 1)
 				{
-					homePage();  //ĞŞ¸ÄÃÜÂë
+					homePage();  //ä¿®æ”¹å¯†ç 
 				}
 				else if (iIint == 2)
 				{
-					drawMoney(); //È¡¿î
+					drawMoney(); //å–æ¬¾
 				}
 				else if (iIint == 3)
 				{
-					saveMoney(); //´æ¿î
+					saveMoney(); //å­˜æ¬¾
 				}
 				else if (iIint == 4)
 				{
-					transfer();//×ªÕË
+					transfer();//è½¬è´¦
 				}
 				else if (iIint == 5)
 				{
@@ -814,7 +814,7 @@ void signIn() //µÇÂ¼º¯Êı
 				if (Y)
 				{
 					printf("---------------\n");
-					printf("|--µÇÂ¼Ê§°Ü!--|\n");
+					printf("|--ç™»å½•å¤±è´¥!--|\n");
 					printf("---------------\n");
 				}
 				else
@@ -834,11 +834,11 @@ void signIn() //µÇÂ¼º¯Êı
 int main()
 {
 	printf("------------------------\n");
-	printf("|-------»¶Ó­Ê¹ÓÃ-------|\n");
+	printf("|-------æ¬¢è¿ä½¿ç”¨-------|\n");
 	printf("------------------------\n");
-	printf("|//¡¾0¡¿Ó¢ÎÄ(English)//|\n");
+	printf("|//ã€0ã€‘è‹±æ–‡(English)//|\n");
 	printf("------------------------\n");
-	printf("|//¡¾1¡¿ÖĞÎÄ(Chinese)//|\n");
+	printf("|//ã€1ã€‘ä¸­æ–‡(Chinese)//|\n");
 	printf("------------------------\n");
 	
 	Y=language();
@@ -850,14 +850,14 @@ int main()
 		{
 			color(12);
 			printf("----------------\n");
-			printf("|--¼ÓÔØÊ§°Ü£¡--|\n");
+			printf("|--åŠ è½½å¤±è´¥ï¼--|\n");
 			printf("----------------\n");
 		}
 		else
 		{
 			color(14);
 			printf("----------------\n");
-			printf("|--¼ÓÔØ³É¹¦£¡--|\n");
+			printf("|--åŠ è½½æˆåŠŸï¼--|\n");
 			printf("----------------\n");
 		}
 		color(7);
@@ -868,14 +868,14 @@ int main()
 		{
 			color(12);
 			printf("-----------------\n");
-			printf("|--Load Fail£¡--|\n");
+			printf("|--Load Failï¼--|\n");
 			printf("-----------------\n");
 		}
 		else
 		{
 			color(14);
 			printf("-----------------------\n");
-			printf("|--onload Function£¡--|\n");
+			printf("|--onload Functionï¼--|\n");
 			printf("-----------------------\n");
 		}
 		color(7);
@@ -887,21 +887,21 @@ int main()
 		if (Y)
 		{
 			printf("-----------------\n");
-			printf("|///¡¾1¡¿¿ª»§///|\n");
+			printf("|///ã€1ã€‘å¼€æˆ·///|\n");
 			printf("-----------------\n");
-			printf("|///¡¾2¡¿µÇÂ¼///|\n");
+			printf("|///ã€2ã€‘ç™»å½•///|\n");
 			printf("-----------------\n");
-			printf("|///¡¾3¡¿ÍË³ö///|\n");
+			printf("|///ã€3ã€‘é€€å‡º///|\n");
 			printf("-----------------\n");
 		}
 		else
 		{
 			printf("-------------------------\n");
-			printf("|--¡¾1¡¿open an account-|\n");
+			printf("|--ã€1ã€‘open an account-|\n");
 			printf("-------------------------\n");
-			printf("|--¡¾2¡¿Login-----------|\n");
+			printf("|--ã€2ã€‘Login-----------|\n");
 			printf("-------------------------\n");
-			printf("|--¡¾3¡¿exit------------|\n");
+			printf("|--ã€3ã€‘exit------------|\n");
 			printf("-------------------------\n");
 		}
 		scanf("%c", &c);
