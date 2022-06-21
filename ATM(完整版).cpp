@@ -47,7 +47,7 @@ int language()
 struct Account
 {
 	char name[100];//姓名
-	char username[21]={'\0'};//账户
+	char username[21];//账户
 	char password[100];//密码
 	char idCard[100];//身份证
 	char phone[100];//电话号码
